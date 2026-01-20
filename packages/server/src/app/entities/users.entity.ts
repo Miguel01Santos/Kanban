@@ -1,15 +1,18 @@
+import { Field } from '@nestjs/graphql';
 import {
   Column,
   CreateDateColumn,
   Entity,
+  OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
+import { Board } from './boards.entity';
 
 @Entity('users')
 export class User {
   @PrimaryGeneratedColumn()
-  id: number;
+  id: string;
 
   @Column({ name: 'first_name', length: 100 })
   firstName: string;
@@ -31,4 +34,8 @@ export class User {
 
   @UpdateDateColumn({ name: 'updated_at' })
   updatedAt: Date;
+
+  @Field(() => [Board], { nullable: true })
+  @OneToMany(() => Board, (board) => board.user)
+  boards: Board[];
 }

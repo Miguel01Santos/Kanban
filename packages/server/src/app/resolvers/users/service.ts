@@ -9,7 +9,7 @@ export class UsersService {
     private readonly userRepository: Repository<User>,
   ) {}
 
-  async findOne(id: number): Promise<User> {
+  async findOne(id: string): Promise<User> {
     const queryBuilder = this.userRepository.createQueryBuilder('user');
 
     const result = await queryBuilder
@@ -48,7 +48,7 @@ export class UsersService {
     return result.raw[0] as User;
   }
 
-  async update(id: number, userData: User): Promise<User> {
+  async update(id: string, userData: User): Promise<User> {
     const queryBuilder = this.userRepository.createQueryBuilder('user');
 
     const result = await queryBuilder
@@ -62,7 +62,7 @@ export class UsersService {
     return result.raw[0] as User;
   }
 
-  async delete(id: number): Promise<void> {
+  async delete(id: string): Promise<void> {
     const queryBuilder = this.userRepository.createQueryBuilder('user');
 
     await queryBuilder.delete().where('id = :id', { id }).execute();
