@@ -1,3 +1,7 @@
+type Query {
+  getUsers: [User]
+}
+
 type User {
   id: ID!
   firstName: String!
