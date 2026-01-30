@@ -1,0 +1,15 @@
+type Query {
+  getBoard(id: ID!): Board
+  listBoards: [Board!]!
+}
+
+type Board {
+  id: ID!
+  name: String!
+  description: String
+  color: String!
+  createdAt: String!
+  updatedAt: String!
+  user: User!
+  userId: String!
+}
