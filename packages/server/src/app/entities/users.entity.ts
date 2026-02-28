@@ -11,7 +11,7 @@ import { Board } from './boards.entity';
 
 @Entity('users')
 export class User {
-  @PrimaryGeneratedColumn()
+  @PrimaryGeneratedColumn('uuid')
   id: string;
 
   @Column({ name: 'first_name', length: 100 })
@@ -23,7 +23,7 @@ export class User {
   @Column({ unique: true })
   email: string;
 
-  @Column({ select: false, length: 24 })
+  @Column({ select: false, length: 100 })
   password: string;
 
   @Column({ nullable: true })
@@ -35,7 +35,7 @@ export class User {
   @UpdateDateColumn({ name: 'updated_at' })
   updatedAt: Date;
 
-  @Field(() => [Board], { nullable: true })
-  @OneToMany(() => Board, (board) => board.user)
+  // @Field(() => [Board], { nullable: true })
+  @OneToMany('Board', (board: Board) => board.user)
   boards: Board[];
 }

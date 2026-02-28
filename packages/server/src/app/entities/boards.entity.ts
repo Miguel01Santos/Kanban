@@ -8,7 +8,7 @@ import {
 } from 'typeorm';
 import { User } from './users.entity';
 
-@Entity()
+@Entity('boards')
 export class Board {
   @Field(() => ID)
   @PrimaryGeneratedColumn('uuid')
@@ -32,8 +32,8 @@ export class Board {
   @Field(() => String)
   updatedAt: Date;
 
-  @Field(() => User)
-  @ManyToOne(() => User, (user) => user.boards, { onDelete: 'CASCADE' })
+  // @Field(() => User)
+  @ManyToOne('User', (user: User) => user.boards, { onDelete: 'CASCADE' })
   @JoinColumn({ name: 'userId' })
   user: User;
 
